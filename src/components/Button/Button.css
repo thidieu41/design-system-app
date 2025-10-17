@@ -1,0 +1,49 @@
+.btn {
+    font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-small {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.btn-medium {
+  padding: 6px 16px;
+  font-size: 14px;
+}
+
+.btn-large {
+  padding: 8px 22px;
+  font-size: 16px;
+}
+
+.btn-contained {
+  border: none;
+  color: #fff;
+}
+
+.btn-outlined {
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.btn-text {
+  border: none;
+  background: transparent;
+}
+
+.btn-primary.btn-contained {
+  background-color: #1976d2;
+}
+
+.btn-primary.btn-outlined {
+  color: #1976d2;
+  border-color: #1976d2;
+}
+.btn-primary.btn-text {
+  color: #1976d2;
+}
