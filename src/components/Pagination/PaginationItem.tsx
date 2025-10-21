@@ -1,61 +1,92 @@
 import styled from "@emotion/styled";
-import { IButtonProps, PaginationItemProps } from "./Pagination.types";
+import {
+  IButtonPaginationProps,
+  ISlotPropsTypes,
+  PaginationItemProps,
+} from "./Pagination.types";
 import { useTheme } from "../../theme/ThemeProvider";
+import React from "react";
+import { useSxStyles } from "../../hooks/useSxStyles";
 
-const ButtonPagination = styled("button")<IButtonProps>(
-  ({
+const ButtonPagination = styled("button")<IButtonPaginationProps>((props) => {
+  const {
     selected,
     variant = "outlined",
     color = "secondary",
-    size,
     shape = "rounded",
+    typeProps,
+    slotProps = {},
+    sx,
+  } = props;
+  const theme = useTheme();
+  const palette = theme.palette[color];
+  const sxStyle = useSxStyles(sx);
+  const slotPropsStyle = slotProps[typeProps as keyof ISlotPropsTypes] || {};
 
-  }) => {
-    const theme = useTheme();
-    const paletee = theme.palette[color];
-    return {
-      background: selected ? paletee.main : "transparent",
-      color: selected ? "#fff" : "#000",
-      cursor: "pointer",
-      padding: "8px 12px",
-      margin: "0 2px",
-      fontSize: theme.typography.fontSize,
-      borderRadius: shape === "rounded" ? "50%" : 6,
-      border: variant==="outlined" ? "1px solid": "none",
-      borderColor: variant==="outlined" ? paletee.main : "transparent",
-      "&:disabled": {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
-    };
-  }
-);
+  return {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: selected ? palette.main : "transparent",
+    color: selected ? "#fff" : "#000",
+    cursor: "pointer",
+    width: 30,
+    height: 30,
+    margin: "0 2px",
+    padding: 6,
+    boxSizing: "border-box",
+    fontSize: theme.typography.fontSize,
+    borderRadius: shape === "rounded" ? "50%" : 6,
+    border: variant === "outlined" ? "1px solid" : "none",
+    borderColor: variant === "outlined" ? palette.main : "transparent",
+    "&:disabled": {
+      opacity: 0.4,
+      cursor: "not-allowed",
+    },
+    ...(typeProps !== "page" && {
+      border: "none",
+    }),
+    ...sxStyle,
+    ...(slotPropsStyle.style || slotPropsStyle.sx),
+  };
+});
 
 export const PaginationItem = (props: PaginationItemProps) => {
-  const { page, type, disabled, selected, onClick } = props;
+  // exclude onChange from being spread onto the native button to avoid the type conflict
+  const {
+    page,
+    disabled,
+    selected,
+    onClick: onClickProp,
+    onChange,
+    slots,
+    slotProps,
+    ...rest
+  } = props;
 
   const content = () => {
-    switch (type) {
+    switch (props.typeProps) {
       case "start-ellipsis":
       case "end-ellipsis":
         return "...";
       case "previous":
-        return "<";
+        return slots?.previous || "<";
       case "next":
-        return ">";
+        return slots?.next || ">";
       case "first":
-        return "<<";
+        return slots?.first || "<<";
       case "last":
-        return ">>";
+        return slots?.last || ">>";
       default:
         return page;
     }
   };
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (disabled || !page) return;
-    onClick?.(e, Number(page));
+    onClickProp?.(e, Number(page));
   };
+
   return (
     <ButtonPagination
       onClick={handleClick}
@@ -63,6 +94,8 @@ export const PaginationItem = (props: PaginationItemProps) => {
       selected={selected}
       shape={props.shape}
       variant={props.variant}
+      slotProps={slotProps}
+      {...rest}
     >
       {content()}
     </ButtonPagination>

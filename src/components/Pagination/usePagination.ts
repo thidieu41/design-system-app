@@ -49,7 +49,7 @@ export const usePagination = (props: UsePaginationProps) => {
 
   if (showFirstButton) {
     itemList.push({
-      type: "first",
+      typeProps: "first",
       page: 1,
       disabled: currentPage === 1,
     });
@@ -57,54 +57,54 @@ export const usePagination = (props: UsePaginationProps) => {
 
   if (!hideNextButton) {
     itemList.push({
-      type: "previous",
+      typeProps: "previous",
       page: Math.max(currentPage - 1, 1),
       disabled: currentPage === 1,
     });
   }
 
-  itemList.push(...startPages.map((p) => ({ type: "page" as const, page: p })));
+  itemList.push(...startPages.map((p) => ({ typeProps: "page" as const, page: p })));
 
   if (siblingStart > boundaryCount + 2) {
     itemList.push({
-      type: "start-ellipsis",
+      typeProps: "start-ellipsis",
       page,
     });
   } else if (boundaryCount + 1 < count - boundaryCount) {
     itemList.push({
-      type: "page",
+      typeProps: "page",
       page: boundaryCount + 1,
     });
   }
 
   itemList.push(
     ...range(siblingStart, siblingEnd).map((p) => ({
-      type: "page" as const,
+      typeProps: "page" as const,
       page: p,
     }))
   );
 
   if (siblingEnd < count - boundaryCount - 1) {
     itemList.push({
-      type: "end-ellipsis",
+      typeProps: "end-ellipsis",
     });
   } else if (count - boundaryCount > boundaryCount) {
     itemList.push({
-      type: "page",
+      typeProps: "page",
       page: count - boundaryCount,
     });
   }
 
   itemList.push(
     ...endPages.map((p) => ({
-      type: "page" as const,
+      typeProps: "page" as const,
       page: p,
     }))
   );
 
   if (!hidePrevButton) {
     itemList.push({
-      type: "next",
+      typeProps: "next",
       page: Math.min(currentPage + 1, count),
       disabled: currentPage === count,
     });
@@ -112,12 +112,13 @@ export const usePagination = (props: UsePaginationProps) => {
 
   if (showLastButton) {
     itemList.push({
-      type: "last",
+      typeProps: "last",
       page: count,
       disabled: currentPage === count,
     });
   }
 
+  // console.log(itemList, 'itemList')
   return {
     items: itemList,
     currentPage,

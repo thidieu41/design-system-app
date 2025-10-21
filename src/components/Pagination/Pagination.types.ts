@@ -1,3 +1,4 @@
+import React, { HTMLAttributes } from "react";
 import { SxProps } from "../../hooks/useSxStyles";
 
 export type ITypeProps =
@@ -9,6 +10,28 @@ export type ITypeProps =
   | "first"
   | "last";
 
+export type ISlotPropsTypes = {
+  first?: HTMLAttributes<React.ElementType> & {
+    sx?: SxProps | {};
+  };
+  last?: HTMLAttributes<React.ElementType> & {
+    sx?: SxProps | {};
+  };
+  next?: HTMLAttributes<React.ElementType> & {
+    sx?: SxProps | {};
+  };
+  previous?: HTMLAttributes<React.ElementType> & {
+    sx?: SxProps | {};
+  };
+};
+
+export type ISlotsProps = {
+  first?: React.ReactNode;
+  last?: React.ReactNode;
+  next?: React.ReactNode;
+  previous?: React.ReactNode;
+};
+
 export type PaginationProps = {
   boundaryCount?: number;
   color?: "primary" | "secondary";
@@ -19,7 +42,7 @@ export type PaginationProps = {
   hidePrevButton?: boolean;
   onChange?: (event: any, page: number) => void;
   page?: number;
-  renderItem?: () => void;
+  renderItem?: (item: PaginationItemProps) => React.ReactNode;
   shape?: "circular" | "rounded";
   showLastButton?: boolean;
   showFirstButton?: boolean;
@@ -44,19 +67,33 @@ export type UsePaginationProps = Pick<
 >;
 
 export type PaginationItemProps = PaginationProps & {
-  type: ITypeProps;
+  typeProps?: ITypeProps;
   page?: number; // dùng cho type="page"
   selected?: boolean; // nếu là trang hiện tại
   disabled?: boolean; // nếu không thể click
+  slots?: ISlotsProps;
+  slotProps?: ISlotPropsTypes;
   onClick?: (e: React.MouseEvent, page: number) => void;
 };
 
 export type PaginationList = Pick<
   PaginationItemProps,
-  "disabled" | "page" | "type"
+  "disabled" | "page" | "typeProps"
 >;
 
 export type IButtonProps = Pick<
   PaginationItemProps,
-  "selected" | "disabled" | "variant" | "shape" | "color" | "size" | "sx"
+  | "selected"
+  | "disabled"
+  | "variant"
+  | "shape"
+  | "color"
+  | "size"
+  | "sx"
+  | "typeProps"
+  | "slotProps"
+  | "slots"
 >;
+
+export type IButtonPaginationProps = IButtonProps &
+  React.HTMLAttributes<HTMLButtonElement>;
