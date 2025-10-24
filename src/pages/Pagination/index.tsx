@@ -14,6 +14,7 @@ export default function PaginationComp() {
       </h3>
       <Pagination
         count={10}
+        page={1}
         variant="outlined"
         color="primary"
         shape="circular"

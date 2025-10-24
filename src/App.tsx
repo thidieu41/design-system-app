@@ -1,7 +1,5 @@
 import "./App.css";
-// import AccordionComp from "./pages/Accordion";
-import PaginationComp from "./pages/Pagination";
-// import ButtonPage from "./pages/Button";
+import CircularProgressComp from "./pages/CircularProgress";
 import { createTheme } from "./theme/createTheme";
 import { ThemeProvider } from "./theme/ThemeProvider";
 
@@ -14,8 +12,7 @@ function App() {
         <div style={{
           margin:30
         }}>
-          {/* <AccordionComp /> */}
-          <PaginationComp/>
+          <CircularProgressComp/>
         </div>
       </div>
     </ThemeProvider>

@@ -1,5 +1,11 @@
 import React, { HTMLAttributes } from "react";
 import { SxProps } from "../../hooks/useSxStyles";
+import {
+  IColor,
+  ISize,
+  IVariantButton,
+  ShapeType,
+} from "../../types/general.types";
 
 export type ITypeProps =
   | "page"
@@ -34,7 +40,7 @@ export type ISlotsProps = {
 
 export type PaginationProps = {
   boundaryCount?: number;
-  color?: "primary" | "secondary";
+  color?: IColor;
   count?: number;
   defaultPage?: number;
   disabled?: boolean;
@@ -43,12 +49,12 @@ export type PaginationProps = {
   onChange?: (event: any, page: number) => void;
   page?: number;
   renderItem?: (item: PaginationItemProps) => React.ReactNode;
-  shape?: "circular" | "rounded";
+  shape?: ShapeType;
   showLastButton?: boolean;
   showFirstButton?: boolean;
   siblingCount?: number;
-  size?: "small" | "medium" | "large";
-  variant?: "outlined" | "text";
+  size?: ISize;
+  variant?: IVariantButton;
   sx?: SxProps;
 };
 

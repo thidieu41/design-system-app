@@ -1,19 +1,33 @@
 export const colors = {
   primary: {
-    main: "#1976d2",
-    light: "#42a5f5",
-    dark: "#1565c0",
-    contrastText: "#fff",
+    light: "#64b5f6", // xanh dương nhạt
+    main: "#1976d2", // xanh dương chính
+    dark: "#0d47a1", // xanh dương đậm
+    contrastText: "#ffffff",
   },
   secondary: {
-    main: "#9c27b0",
-    light: "#ba68c8",
-    dark: "#7b1fa2",
-    contrastText: "#fff",
+    light: "#ff4081", // hồng nhạt
+    main: "#f50057", // hồng chính
+    dark: "#c51162", // hồng đậm
+    contrastText: "#ffffff",
+  },
+  success: {
+    light: "#81c784", // xanh lá nhạt
+    main: "#4caf50", // xanh lá chính
+    dark: "#388e3c", // xanh lá đậm
+    contrastText: "#ffffff",
+  },
+  warning: {
+    light: "#ffb74d", // cam nhạt
+    main: "#ff9800", // cam chính
+    dark: "#f57c00", // cam đậm
+    contrastText: "#000000",
   },
   error: {
-    main: "#d32f2f",
-    contrastText: "#fff",
+    light: "#e57373", // đỏ nhạt
+    main: "#f44336", // đỏ chính
+    dark: "#d32f2f", // đỏ đậm
+    contrastText: "#ffffff",
   },
   gray: {
     100: "#f5f5f5",

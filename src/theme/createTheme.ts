@@ -6,6 +6,9 @@ export const createTheme = (mode: "light" | "dark" = "light") => ({
     primary: colors.primary,
     secondary: colors.secondary,
     error: colors.error,
+    warning: colors.warning,
+    success: colors.success,
+    gray: colors.gray,
     text: {
       primary: mode === "light" ? colors.gray[900] : "#fff",
       secondary: mode === "light" ? colors.gray[700] : colors.gray[300],

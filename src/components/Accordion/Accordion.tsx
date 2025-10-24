@@ -64,7 +64,7 @@ export const Accordion = (props: AccordionProps) => {
 
   const [expanedState, setExpandedState] = useState(defaultExpaned);
   const isControlled = expanedProp !== undefined;
-  const expanded = isControlled ? !!expanedProp : expanedState;
+  const expanded = isControlled ? expanedProp : !!expanedState;
 
   const toggle = () => {
     if (disabled) return;

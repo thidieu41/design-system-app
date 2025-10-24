@@ -4,11 +4,12 @@ import styled from "@emotion/styled";
 import { useTheme } from "../../theme/ThemeProvider";
 import { keyframes } from "@emotion/react";
 import { SxProps, useSxStyles } from "../../hooks/useSxStyles";
+import { IColor, ISize, IVariantButton } from "../../types/general.types";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "contained" | "outlined" | "text";
-  color?: "primary" | "secondary" | "error";
-  size?: "small" | "medium" | "large";
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: IVariantButton;
+  color?: IColor;
+  size?: ISize;
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
@@ -51,7 +52,7 @@ const ButtonRoot = styled("button")<ButtonProps>(
   ({
     variant = "contained",
     color = "primary",
-    size = "small",
+    size = "medium",
     disabled = false,
     loading = false,
     fullWidth = false,
@@ -112,9 +113,25 @@ const ButtonRoot = styled("button")<ButtonProps>(
 );
 
 export const Button: React.FC<ButtonProps> = (props) => {
-  const { startIcon, endIcon, loading, children } = props;
+  const {
+    startIcon,
+    endIcon,
+    loading = false,
+    children,
+    size = "medium",
+    variant = "contained",
+    color = "primary",
+    ...resProps
+  } = props;
+  console.log(props);
   return (
-    <ButtonRoot {...props}>
+    <ButtonRoot
+      size={size}
+      variant={variant}
+      color={color}
+      loading={loading}
+      {...resProps}
+    >
       {startIcon && <ButtonStartIcon {...props}>{startIcon} </ButtonStartIcon>}
       {loading && <Spinner />}
       <ButtonContent loading={loading}>{children}</ButtonContent>
