@@ -26,7 +26,5 @@ export const ButtonGroupProvider = (props: ButtonProviderProps) => {
 
 export const useButtonGroupContext = () => {
   const buttonContext = useContext(ButtonContext);
-  if (!buttonContext)
-    throw new Error("useButtonContext must be used within ButtonGroupContext");
   return buttonContext;
 };

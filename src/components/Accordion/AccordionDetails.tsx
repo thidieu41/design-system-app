@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { SxProps, useSxStyles } from "../../hooks/useSxStyles";
+import { SxProps, useSxStyles } from "../../utils/useSxStyles";
 import { useAccordionContext } from "./Accordion";
 import { useRef } from "react";
 

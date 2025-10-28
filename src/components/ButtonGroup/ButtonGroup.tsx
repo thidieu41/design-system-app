@@ -3,7 +3,7 @@ import { ButtonGroupProps } from "./ButtonGroup.types";
 import { useTheme } from "../../theme/ThemeProvider";
 import { ButtonGroupProvider } from "../../context/ButtonContext";
 import { useMemo } from "react";
-import { useSxStyles } from "../../hooks/useSxStyles";
+import { useSxStyles } from "../../utils/useSxStyles";
 
 const ButtonGroupRoot = styled("div")((props: ButtonGroupProps) => {
   const {
@@ -23,18 +23,17 @@ const ButtonGroupRoot = styled("div")((props: ButtonGroupProps) => {
     display: "flex",
     flexDirection: direction,
     gap: `${spacing}px`,
-    maxWidth: "fit-content",
-    "& > :not(:first-child)": {
-      ...(orientation === "horizontal"
-        ? {
-            borderLeft: `1px solid`,
-          }
-        : {
-            borderTop: `1px solid`,
-          }),
-    },
-
+    flex: 1,
     ...(spacing === 0 && {
+      "& > :not(:first-child)": {
+        ...(orientation === "horizontal"
+          ? {
+              borderLeft: `1px solid`,
+            }
+          : {
+              borderTop: `1px solid`,
+            }),
+      },
       "& > :first-of-type": {
         ...(orientation === "horizontal"
           ? {
@@ -61,7 +60,6 @@ const ButtonGroupRoot = styled("div")((props: ButtonGroupProps) => {
         borderRadius: 0,
       },
     }),
-
     ...useStyle,
   };
 });

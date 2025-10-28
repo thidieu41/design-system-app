@@ -5,7 +5,7 @@ import {
   IVariantButton,
   OrientationType,
 } from "../../types/general.types";
-import { SxProps } from "../../hooks/useSxStyles";
+import { SxProps } from "../../utils/useSxStyles";
 
 export type ButtonGroupSlotProps = {};
 

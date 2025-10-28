@@ -5,14 +5,14 @@ import { Button } from "../components/Button/Button";
 const meta = {
   title: "Components/ButtonGroup",
   component: ButtonGroup,
-  argTypes:{
+  argTypes: {
     spacing: {
-      control:"number"
-    }
+      control: "number",
+    },
   },
   render: (args) => {
     return (
-      <ButtonGroup {...args}>
+      <ButtonGroup {...args} buttonFlex={1}>
         <Button>Press 1</Button>
         <Button>Press 2</Button>
         <Button>Press 3</Button>
@@ -25,7 +25,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
-    // spacing: 3,
-    color:"secondary"
+    color: "secondary",
   },
 };

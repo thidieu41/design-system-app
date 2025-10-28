@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { useTheme } from "../../theme/ThemeProvider";
 import { keyframes } from "@emotion/react";
-import { SxProps, useSxStyles } from "../../hooks/useSxStyles";
+import { SxProps, useSxStyles } from "../../utils/useSxStyles";
 import { IColor, ISize, IVariantButton } from "../../types/general.types";
 import { useButtonGroupContext } from "../../context/ButtonContext";
 
@@ -53,9 +53,9 @@ const ButtonEndIcon = styled("span")<ButtonProps>(({ size }) => ({
 
 const ButtonRoot = styled("button")<ButtonProps>(
   ({
-    variant = "contained",
+    variant,
     color = "primary",
-    size = "medium",
+    size,
     disabled = false,
     loading = false,
     fullWidth = false,
@@ -72,7 +72,7 @@ const ButtonRoot = styled("button")<ButtonProps>(
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-
+      // flex: 1,
       ...(fullWidth && {
         width: "100%",
       }),
@@ -113,6 +113,7 @@ const ButtonRoot = styled("button")<ButtonProps>(
       }),
       "&:hover": {
         backgroundColor: palette.hover,
+        color: palette.contrastText
       },
       ...sxStyles,
     };
@@ -130,7 +131,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
     color: colorProp,
     disabled: disabledProp = false,
   } = props;
-  const { dataProps } = useButtonGroupContext();
+  
+  const buttonGroupContext = useButtonGroupContext();
+  const dataProps = buttonGroupContext?.dataProps;
 
   const size = sizeProp || dataProps?.size || "medium";
   const variant = variantProp || dataProps?.variant || "contained";

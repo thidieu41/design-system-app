@@ -6,7 +6,7 @@ import {
 } from "./Pagination.types";
 import { useTheme } from "../../theme/ThemeProvider";
 import React from "react";
-import { useSxStyles } from "../../hooks/useSxStyles";
+import { useSxStyles } from "../../utils/useSxStyles";
 
 const ButtonPagination = styled("button")<IButtonPaginationProps>((props) => {
   const {

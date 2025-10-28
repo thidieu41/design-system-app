@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { SxProps, useSxStyles } from "../../hooks/useSxStyles";
+import { SxProps, useSxStyles } from "../../utils/useSxStyles";
 import React from "react";
 import { useTheme } from "../../theme/ThemeProvider";
 import { useAccordionContext } from "./Accordion";
@@ -34,7 +34,7 @@ const AccordionSummaryRoot = styled("button")<ExpanededIconProps>(
       fontWeight: 600,
       outline: "none",
       border: 0,
-      "&: focus": {
+      "&:focus": {
         boxShadow: "0 0 0 3px rgba(25,118,210,0.15)",
         borderRadius: 4,
       },

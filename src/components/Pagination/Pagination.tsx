@@ -3,7 +3,7 @@ import { usePagination } from "./usePagination";
 import { PaginationItem } from "./PaginationItem";
 import { PaginationProps } from "./Pagination.types";
 import styled from "@emotion/styled";
-import { useSxStyles } from "../../hooks/useSxStyles";
+import { useSxStyles } from "../../utils/useSxStyles";
 
 const PaginationRoot = styled("div")<PaginationProps>(({ sx }) => {
   const sxStyle = useSxStyles();

@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import { SxProps } from "../../hooks/useSxStyles";
+import { SxProps } from "../../utils/useSxStyles";
 import {
   IColor,
   ISize,
