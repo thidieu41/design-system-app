@@ -117,8 +117,7 @@ export const usePagination = (props: UsePaginationProps) => {
       disabled: currentPage === count,
     });
   }
-
-  // console.log(itemList, 'itemList')
+  
   return {
     items: itemList,
     currentPage,

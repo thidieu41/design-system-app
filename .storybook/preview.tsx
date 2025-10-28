@@ -1,7 +1,13 @@
 import type { Preview } from "@storybook/react-webpack5";
-import {ThemeProvider} from "../src/theme/ThemeProvider"
+import { ThemeProvider } from "../src/theme/ThemeProvider";
 
 const preview: Preview = {
+  argTypes: {
+    color: {
+      control: "select",
+      options: ["primary", "secondary", "success", "warning", "error"],
+    },
+  },
   parameters: {
     controls: {
       matchers: {
@@ -11,12 +17,12 @@ const preview: Preview = {
     },
   },
   decorators: [
-  (Story) => (
-    <ThemeProvider>
-      <Story />
-    </ThemeProvider>
-  ),
-],
+    (Story) => (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
 };
 
 export default preview;

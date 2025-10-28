@@ -19,6 +19,7 @@ export default function ButtonPage() {
         onClick={() => setLoading(!isLoading)}
         loading={isLoading}
         className=""
+        type="submit"
       >
         Container medim
       </Button>

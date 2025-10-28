@@ -5,8 +5,11 @@ import { useTheme } from "../../theme/ThemeProvider";
 import { keyframes } from "@emotion/react";
 import { SxProps, useSxStyles } from "../../hooks/useSxStyles";
 import { IColor, ISize, IVariantButton } from "../../types/general.types";
+import { useButtonGroupContext } from "../../context/ButtonContext";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  lable?: string;
   variant?: IVariantButton;
   color?: IColor;
   size?: ISize;
@@ -69,6 +72,7 @@ const ButtonRoot = styled("button")<ButtonProps>(
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
+
       ...(fullWidth && {
         width: "100%",
       }),
@@ -107,6 +111,9 @@ const ButtonRoot = styled("button")<ButtonProps>(
         color: isDisable ? theme.palette.action.disabledText : palette.main,
         border: "none",
       }),
+      "&:hover": {
+        backgroundColor: palette.hover,
+      },
       ...sxStyles,
     };
   }
@@ -116,26 +123,40 @@ export const Button: React.FC<ButtonProps> = (props) => {
   const {
     startIcon,
     endIcon,
-    loading = false,
     children,
-    size = "medium",
-    variant = "contained",
-    color = "primary",
-    ...resProps
+    lable,
+    size: sizeProp,
+    variant: variantProp,
+    color: colorProp,
+    disabled: disabledProp = false,
   } = props;
-  console.log(props);
+  const { dataProps } = useButtonGroupContext();
+
+  const size = sizeProp || dataProps?.size || "medium";
+  const variant = variantProp || dataProps?.variant || "contained";
+  const color = colorProp || dataProps?.color || "primary";
+  const disabled = disabledProp || dataProps?.disabled || false;
+
+  const mergeProps = {
+    ...props,
+    size,
+    variant,
+    color,
+    disabled,
+  };
+
   return (
     <ButtonRoot
-      size={size}
-      variant={variant}
-      color={color}
-      loading={loading}
-      {...resProps}
+      aria-label={lable || ""}
+      {...mergeProps}
+      disabled={disabled || props.loading}
     >
-      {startIcon && <ButtonStartIcon {...props}>{startIcon} </ButtonStartIcon>}
-      {loading && <Spinner />}
-      <ButtonContent loading={loading}>{children}</ButtonContent>
-      {endIcon && <ButtonEndIcon {...props}> {endIcon}</ButtonEndIcon>}
+      {startIcon && (
+        <ButtonStartIcon {...mergeProps}>{startIcon} </ButtonStartIcon>
+      )}
+      {props.loading && <Spinner />}
+      <ButtonContent loading={props.loading}>{lable || children}</ButtonContent>
+      {endIcon && <ButtonEndIcon {...mergeProps}> {endIcon}</ButtonEndIcon>}
     </ButtonRoot>
   );
 };

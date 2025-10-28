@@ -20,15 +20,5 @@ const Template = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  color: "primary",
-  variant:"outlined",
-  size:"small",
-  className:"",
-  disabled:false,
-  loading: false,
-  fullWidth: false,
-  sx: {},
-  id:"",
-  startIcon:<></>,
   children:"Press Me",
 };
