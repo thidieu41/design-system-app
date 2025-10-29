@@ -24,6 +24,11 @@ export const createTheme = (mode: "light" | "dark" = "light") => ({
     default: mode === "light" ? "#fff" : colors.gray[900],
     paper: mode === "light" ? "#fff" : colors.gray[800],
   },
+  fontSize: {
+    small: 14,
+    medium: 16,
+    large: 18
+  },
   typography,
   spacing,
 });

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ButtonGroupProps } from "./ButtonGroup.types";
 import { useTheme } from "../../theme/ThemeProvider";
-import { ButtonGroupProvider } from "../../context/ButtonContext";
+import { ButtonGroupProvider } from "../../context/ButtonGroup/ButtonContext";
 import { useMemo } from "react";
 import { useSxStyles } from "../../utils/useSxStyles";
 

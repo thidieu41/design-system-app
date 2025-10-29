@@ -2,7 +2,6 @@
 import React, { createContext, useContext, ReactNode } from "react";
 import { createTheme, Theme } from "./createTheme";
 
-
 // ✅ Đây là biến context, KHÔNG phải namespace
 const ThemeContext = createContext<Theme | undefined>(undefined);
 
@@ -16,6 +15,7 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
 
   return (
     <ThemeContext.Provider value={mergedTheme}>
+
       {children}
     </ThemeContext.Provider>
   );

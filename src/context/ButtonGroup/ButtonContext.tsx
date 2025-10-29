@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { IColor, ISize, IVariantButton } from "../types/general.types";
+import { IColor, ISize, IVariantButton } from "../../types/general.types";
 
 interface ButtonProviderProps {
   dataProps?: {

@@ -5,7 +5,7 @@ import { useTheme } from "../../theme/ThemeProvider";
 import { keyframes } from "@emotion/react";
 import { SxProps, useSxStyles } from "../../utils/useSxStyles";
 import { IColor, ISize, IVariantButton } from "../../types/general.types";
-import { useButtonGroupContext } from "../../context/ButtonContext";
+import { useButtonGroupContext } from "../../context/ButtonGroup/ButtonContext";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -55,7 +55,7 @@ const ButtonRoot = styled("button")<ButtonProps>(
   ({
     variant,
     color = "primary",
-    size,
+    size = "medium",
     disabled = false,
     loading = false,
     fullWidth = false,
@@ -65,9 +65,10 @@ const ButtonRoot = styled("button")<ButtonProps>(
     const palette = theme.palette[color];
     const sxStyles = useSxStyles(sx);
     const isDisable = disabled || loading;
+    const fontSizeText = theme.fontSize;
     return {
       position: "relative",
-      fontFamily: theme.typography.fontFamily,
+      // fontFamily: theme.typography.fontFamily,
       borderRadius: 6,
       display: "inline-flex",
       alignItems: "center",
@@ -82,12 +83,7 @@ const ButtonRoot = styled("button")<ButtonProps>(
           : size === "large"
           ? "8px 22px"
           : "6px 16px",
-      fontSize:
-        size === "small"
-          ? 12
-          : size === "large"
-          ? 16
-          : theme.typography.fontSize,
+      fontSize: fontSizeText[`${size}`],
       cursor: isDisable ? "not-allowed" : "pointer",
       transition: "all 0.2s ease",
       ...(variant === "contained" && {

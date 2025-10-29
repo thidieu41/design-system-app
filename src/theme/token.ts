@@ -50,7 +50,7 @@ export const colors = {
 export const spacing = (factor: number) => `${0.25 * factor}rem`;
 
 export const typography = {
-  fontFamily: "'Comic Sans MS', sans-serif",
+  fontFamily: "'Poppins', sans-serif",
   fontSize: 14,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
